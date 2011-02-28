@@ -1,3 +1,74 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Main file for the Design review module
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function civimobile_menu() {
+  $items = array();
+
+  $items['civimobile'] = array(
+    'title'            => 'CiviMobile',
+    'description'      => 'A small but very effective mobile interface to your CiviCRM installation.',
+    'page callback'    => '_civimobile_page',
+    'access arguments' => array('access administration pages'),
+    'type'             => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Callback for menu item civimobile
+ */
+function _civimobile_page() {
+  $page = array();
+
+  //Node emulation - markup from http://adaptivethemes.com/element-styling-cheat-sheet
+  $node = (object) array(
+    'nid'       => '1',
+    'type'      => 'design',
+    'language'  => 'en',
+    'uid'       => '1',
+    'status'    => '1',
+    'created'   => '1242982110',
+    'changed'   => '1242982110',
+    'comment'   => '0',
+    'promote'   => '1',
+    'moderate'  => '0',
+    'sticky'    => '0',
+    'tnid'      => '0',
+    'translate' => '0',
+    'vid'       => '1',
+    'log'       => '',
+    'format'    => '2',
+    'name'      => '',
+    'picture'   => '',
+    'data'      => 'a:1:{s:13:"form_build_id";s:37:"form-0c7c6bc5833fbd66eecb723629e61757";}',
+    'path'      => 'civimobile',
+    'taxonomy'  => array(),
+    'revision_timestamp' => '1242982110',
+    'revision_uid'       => '3',
+    'title'     => 'CiviMobile',
+    'body'      => 'CiviMobile Body',
+    'teaser' => 'CiviMobile Teaser',
+  );
+
+  $page['node'] = array(
+    '#value' => node_view($node, FALSE, TRUE),
+  );
+
+  drupal_alter('civimobile', $page);
+
+  return drupal_render($page);
+}
+
+
 function civimobile_theme() {
 	return array(
 		'civimobilehook_special' => array(
@@ -12,13 +83,5 @@ function civimobile_preprocess_civimobilehook_special(&$vars) {
 	$pageArgs= $vars['pageArgs'];
 	$vars['templateVarName'] = $pageArgs->property;
 }
-
-
-
-
-
-
-
-
 
 
