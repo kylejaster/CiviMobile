@@ -16,7 +16,7 @@ function civimobile_menu() {
     'title'            => 'CiviMobile',
     'description'      => 'A small but very effective mobile interface to your CiviCRM installation.',
     'page callback'    => '_civimobile_page',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('access CiviCRM'),
     'type'             => MENU_NORMAL_ITEM,
   );
 
@@ -27,45 +27,22 @@ function civimobile_menu() {
  * Callback for menu item civimobile
  */
 function _civimobile_page() {
-  $page = array();
+  $civimobile_page_settings = _civimobile_vars_setup();
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.page.tpl.php');
+  
+}
 
-  //Node emulation - markup from http://adaptivethemes.com/element-styling-cheat-sheet
-  $node = (object) array(
-    'nid'       => '1',
-    'type'      => 'design',
-    'language'  => 'en',
-    'uid'       => '1',
-    'status'    => '1',
-    'created'   => '1242982110',
-    'changed'   => '1242982110',
-    'comment'   => '0',
-    'promote'   => '1',
-    'moderate'  => '0',
-    'sticky'    => '0',
-    'tnid'      => '0',
-    'translate' => '0',
-    'vid'       => '1',
-    'log'       => '',
-    'format'    => '2',
-    'name'      => '',
-    'picture'   => '',
-    'data'      => 'a:1:{s:13:"form_build_id";s:37:"form-0c7c6bc5833fbd66eecb723629e61757";}',
-    'path'      => 'civimobile',
-    'taxonomy'  => array(),
-    'revision_timestamp' => '1242982110',
-    'revision_uid'       => '3',
-    'title'     => 'CiviMobile',
-    'body'      => 'CiviMobile Body',
-    'teaser' => 'CiviMobile Teaser',
-  );
 
-  $page['node'] = array(
-    '#value' => node_view($node, FALSE, TRUE),
-  );
-
-  drupal_alter('civimobile', $page);
-
-  return drupal_render($page);
+function _civimobile_vars_setup() {
+    
+    $civimobile_vars['language'] = $GLOBALS['locale'];
+    $civimobile_vars['title']   = 'CiviMobile';
+    $civimobile_vars['head']    = drupal_get_html_head();
+    $civimobile_vars['favicon'] = theme_get_setting("toggle_favicon") ? "<link rel=\"shortcut icon\" href=\"". theme_get_setting("favicon") ."\" type=\"image/x-icon\"/>\n" : "";
+    $civimobile_vars['styles']   = drupal_get_css();
+    $civimobile_vars['scripts']   = drupal_get_js();
+    
+    return $civimobile_vars;     
 }
 
 
@@ -73,7 +50,7 @@ function civimobile_theme() {
 	return array(
 		'civimobilehook_special' => array(
 			//notice I am setting this up to look for the file in a subdirectory of the module
-			'template' => 'templates/page.tpl.php',
+			'template' => 'templates/civimobile.page.tpl.php',
 			'arguments' => array('pageArgs' => null),
 		)
 	);
