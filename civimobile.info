@@ -1,0 +1,6 @@
+; $Id$
+name = CiviMobile
+description = A small but very effective mobile interface to your CiviCRM installation.
+core = 6.x
+package = CiviCRM
+dependencies[] = civicrm
