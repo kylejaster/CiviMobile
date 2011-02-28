@@ -1,0 +1,24 @@
+function civimobile_theme() {
+	return array(
+		'civimobilehook_special' => array(
+			//notice I am setting this up to look for the file in a subdirectory of the module
+			'template' => 'templates/page.tpl.php',
+			'arguments' => array('pageArgs' => null),
+		)
+	);
+}
+
+function civimobile_preprocess_civimobilehook_special(&$vars) {
+	$pageArgs= $vars['pageArgs'];
+	$vars['templateVarName'] = $pageArgs->property;
+}
+
+
+
+
+
+
+
+
+
+
