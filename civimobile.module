@@ -23,28 +23,43 @@ function civimobile_menu() {
   return $items;
 }
 
-
-function civimobile_preprocess_page(&$variables){
-	     $variables['styles'] = drupal_get_css();
-}
-
-
-function civimobile_theme() {
-    return array (
-        'civimobile_page' => array (
-            'template' => 'civimobile.page',
-            'arguments' => array('text' => NULL),
-            )
-    );    
-}
-
-
 /**
  * Callback for menu item civimobile
  */
 function _civimobile_page() {
-	drupal_add_css('path/to/style.css');
-    return t('CiviMobile Homepage');
+  $civimobile_page_settings = _civimobile_vars_setup();
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.page.tpl.php');
+  
+}
+
+
+function _civimobile_vars_setup() {
+    
+    $civimobile_vars['language'] = $GLOBALS['locale'];
+    $civimobile_vars['title']   = 'CiviMobile';
+    $civimobile_vars['head']    = drupal_get_html_head();
+    $civimobile_vars['favicon'] = theme_get_setting("toggle_favicon") ? "<link rel=\"shortcut icon\" href=\"". theme_get_setting("favicon") ."\" type=\"image/x-icon\"/>\n" : "";
+    $civimobile_vars['styles']   = drupal_get_css();
+    $civimobile_vars['scripts']   = drupal_get_js();
+    $civimobile_vars['civimobile_assets']   = drupal_get_path('module','civimobile');
+    
+    return $civimobile_vars;     
+}
+
+
+function civimobile_theme() {
+	return array(
+		'civimobilehook_special' => array(
+			//notice I am setting this up to look for the file in a subdirectory of the module
+			'template' => 'templates/civimobile.page.tpl.php',
+			'arguments' => array('pageArgs' => null),
+		)
+	);
+}
+
+function civimobile_preprocess_civimobilehook_special(&$vars) {
+	$pageArgs= $vars['pageArgs'];
+	$vars['templateVarName'] = $pageArgs->property;
 }
 
 
