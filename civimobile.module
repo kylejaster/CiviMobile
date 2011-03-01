@@ -49,8 +49,12 @@ function _civimobile_events_page() {
 }
 
 function _civimobile_vars_setup() {
-    require_once 'CRM/Core/Config.php';
-    $config   = CRM_Core_Config::singleton( );
+  //  Left to somebody more knowledgeable than me to figure out
+  //  can't figure out how to load civicrm's Config.php file from here
+  //
+  //  require_once '../civicrm/CRM/Core/Config.php';
+  //  $config   = CRM_Core_Config::singleton( );
+  //  $civimobile_vars['civicrm_base'] = $config->userFrameworkResourceURL;
     
     $civimobile_vars['language'] = $GLOBALS['locale'];
     $civimobile_vars['title']   = 'CiviMobile';
@@ -59,9 +63,6 @@ function _civimobile_vars_setup() {
     $civimobile_vars['styles']   = drupal_get_css();
     $civimobile_vars['scripts']   = drupal_get_js();
     $civimobile_vars['civimobile_assets']   = base_path().drupal_get_path('module','civimobile');
-    // This one isn't properly set in my case: /sites/all/modules/civi.trunk/drupal/js/rest.js was expecting 
-
-    $civimobile_vars['civicrm_base'] = $config->userFrameworkResourceURL;
 
     return $civimobile_vars;     
 }
