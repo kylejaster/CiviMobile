@@ -10,15 +10,26 @@
  * Implementation of hook_menu().
  */
 function civimobile_menu() {
-  $items = array();
+    $items = array();
+    
+    // CiviMobile Homepage
+    $items['civimobile'] = array(
+      'title'            => 'CiviMobile',
+      'description'      => 'A small but very effective mobile interface to your CiviCRM installation.',
+      'page callback'    => '_civimobile_home_page',
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
 
-  $items['civimobile'] = array(
-    'title'            => 'CiviMobile',
-    'description'      => 'A small but very effective mobile interface to your CiviCRM installation.',
-    'page callback'    => '_civimobile_page',
-    'access arguments' => array('access CiviCRM'),
-    'type'             => MENU_NORMAL_ITEM,
-  );
+    // Events page listing all events
+    $items['civimobile/events'] = array(
+      'title'            => 'CiviMobile',
+      'description'      => 'A small but very effective mobile interface to your CiviCRM installation.',
+      'page callback'    => '_civimobile_events_page',
+      'page arguments'   => array('events'),
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
 
   return $items;
 }
@@ -26,12 +37,16 @@ function civimobile_menu() {
 /**
  * Callback for menu item civimobile
  */
-function _civimobile_page() {
+function _civimobile_home_page() {
   $civimobile_page_settings = _civimobile_vars_setup();
-  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.page.tpl.php');
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.home.tpl.php');
   return NULL;
 }
-
+function _civimobile_events_page() {
+  $civimobile_page_settings = _civimobile_vars_setup();
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.events.tpl.php');
+  return NULL;
+}
 
 function _civimobile_vars_setup() {
     
