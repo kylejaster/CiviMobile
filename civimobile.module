@@ -29,7 +29,7 @@ function civimobile_menu() {
 function _civimobile_page() {
   $civimobile_page_settings = _civimobile_vars_setup();
   include_once(drupal_get_path('module','civimobile').'/templates/civimobile.page.tpl.php');
-  
+  return NULL;
 }
 
 

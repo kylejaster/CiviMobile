@@ -12,14 +12,12 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
-    
+    <script src="<?php print $civimobile_page_settings['civimobile_assets'] ?>"></script>
   </head>
 <body> 
 <div data-role="page" data-theme="b" id="jqm-home"> 
-	<div id="jqm-homeheader"> 
-		<h1 id="jqm-logo"><img src="docs/_assets/images/jquery-logo.png" alt="jQuery Mobile Framework" width="235" height="61" /></h1> 
-		<p>A Touch-Optimized Web Framework for Smartphones &amp; Tablets</p> 
-		<p id="jqm-version">Alpha Release</p> 
+	<div id="jqm-homeheader">
+	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
 	</div> 
 	
 	<div data-role="content"> 
