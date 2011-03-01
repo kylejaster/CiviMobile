@@ -1,4 +1,8 @@
-<? require('civimobile.header.php'); ?>
+
+<?
+ require_once('civimobile.header.php'); 
+
+?>
 
 <div data-role="page" data-theme="b" id="jqm-home"> 
 	<div id="jqm-homeheader">

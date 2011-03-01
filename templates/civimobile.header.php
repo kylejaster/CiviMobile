@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
-    <script src="<?php print $civimobile_page_settings['civicrm_base'] ?>/js/base.js"></script>
-    <script src="<?php print $civimobile_page_settings['civimobile_assets'] ?>/js/rest.js"></script>
+    <script src="<?php print $civimobile_page_settings['civimobile_assets'];?>/js/base.js"></script>
+    <script src="<?php print $civimobile_page_settings['civicrm_base'];?>/js/rest.js"></script>
   </head>
 <body> 

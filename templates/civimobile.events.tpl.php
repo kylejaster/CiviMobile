@@ -1,4 +1,5 @@
-<? require('civimobile.header.php'); ?>
+<? require('civimobile.header.php'); 
+?>
 <script>
 $().crmAPI ('Event','get',{'version' :'3', }
   ,{ success:function (data){    
