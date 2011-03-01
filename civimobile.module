@@ -41,7 +41,8 @@ function _civimobile_vars_setup() {
     $civimobile_vars['favicon'] = theme_get_setting("toggle_favicon") ? "<link rel=\"shortcut icon\" href=\"". theme_get_setting("favicon") ."\" type=\"image/x-icon\"/>\n" : "";
     $civimobile_vars['styles']   = drupal_get_css();
     $civimobile_vars['scripts']   = drupal_get_js();
-    $civimobile_vars['civimobile_assets']   = drupal_get_path('module','civimobile');
+    $civimobile_vars['civimobile_assets']   = base_path().drupal_get_path('module','civimobile');
+    $civimobile_vars['civicrm_base']   = base_path().drupal_get_path('module','civicrm');
     
     return $civimobile_vars;     
 }
