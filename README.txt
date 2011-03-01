@@ -21,3 +21,10 @@ TODO:
 
 - they are 40 types of entity available on the API, quite a few features to add ;)
 Beside that, things like canvassing or updating the status of participants (registered -> attended) seems to be some of the features that would benefit most a mobile interface.
+
+if this project is ever going to grow, it needs a proper architecture on the jquery side
+- a templating solution
+- a MVC
+
+Any suggestion of plugins to use more than welcome, patch even more welcomed ;)
+
