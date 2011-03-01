@@ -19,11 +19,6 @@ $().crmAPI ('Event','get',{'version' :'3', }
 		
 		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
 			<li data-role="list-divider" role="heading" tabindex="0">Events</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
 		</ul> 
 	</div> 
 </div> 
