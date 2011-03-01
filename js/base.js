@@ -1,4 +1,4 @@
-/*$().crmAPI ('Event','get',{'version' :'3' }
+$().crmAPI ('Event','get',{'version' :'3' }
   ,{ success:function (data){    
       $.each(data, function(key, value) {
         alert('<li>'+value+'</li>');
@@ -6,8 +6,6 @@
       },
    }
 );
-need to include js/rest.js first
-*/
 
 
 function civimobileCreatePage (json) {
