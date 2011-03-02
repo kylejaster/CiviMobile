@@ -5,16 +5,12 @@
 ?>
 
 <div data-role="page" data-theme="b" id="jqm-home"> 
-	<div id="jqm-homeheader">
+	<div id="jqm-homeheader" data-role="header">
 	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
 	</div> 
 	
-	<div data-role="content"> 
-		
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
-			<li><a   href="<?php print base_path(); ?>civimobile/events" data-transition="slide">Events</a>
-            </li> 
-		</ul> 
+	<div data-role="content" id="home-content"> 
+
 	</div> 
 </div> 
 
