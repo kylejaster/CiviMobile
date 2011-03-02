@@ -31,6 +31,16 @@ function civimobile_menu() {
       'type'             => MENU_NORMAL_ITEM,
     );
 
+    // Events page listing all events
+    $items['civimobile/participants'] = array(
+      'title'            => 'CiviMobile',
+      'description'      => 'Event Participants',
+      'page callback'    => '_civimobile_participants_page',
+      'page arguments'   => array('events'),
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
+
   return $items;
 }
 
@@ -42,9 +52,15 @@ function _civimobile_home_page() {
   include_once(drupal_get_path('module','civimobile').'/templates/civimobile.home.tpl.php');
   return NULL;
 }
-function _civimobile_events_page() {
+function _civimobile_events_page(&$arguments) {
   $civimobile_page_settings = _civimobile_vars_setup();
   include_once(drupal_get_path('module','civimobile').'/templates/civimobile.events.tpl.php');
+  return NULL;
+}
+
+function _civimobile_participants_page() {
+  $civimobile_page_settings = _civimobile_vars_setup();
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.participants.tpl.php');
   return NULL;
 }
 
