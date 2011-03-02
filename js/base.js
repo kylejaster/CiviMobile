@@ -17,7 +17,7 @@ function getUrlVars() {
             success:function (data){
               $('#home-content').append('<ul id="events-list" data-role="listview" data-inset="true"></ul>');
               $.each(data.values, function(key, value) {
-                $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'"><a href="civimobile/participants&event_id='+value.id+'">'+value.title+'</a></li>');
+                $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
                 });
               $('#events-list').listview();
               },
@@ -29,28 +29,67 @@ $(function(){
 
 	$('div').live('pageshow',function(event, ui){
 
-        console.log(getUrlVars());
-        
+        // get array of url params        
         urlVars = getUrlVars();
-        console.log(urlVars[0][1]);
-        
-
-        
+        console.log(urlVars);
         
         // listen for click on event
         // then generate participants page
-        if (urlVars[0][0]){
-             $().crmAPI ('Participant','get',{'version' :'3', 'event_id' : urlVars[0][0 ] }
+        if (urlVars.length >0){
+            $.mobile.pageLoading();
+             $().crmAPI ('Participant','get',{'version' :'3', 'event_id' : urlVars[0][1] }
                ,{ 
                    ajaxURL: crmajaxURL,
-                   success:function (data){    
+                   success:function (data){
+                   $('#participants').attr('id','participants-'+urlVars[0][1]);
+                   participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');  
                    $.each(data.values, function(key, value) {
-                     $('#participants-list').append('<li role="option" tabindex="-1" data-theme="c"><a href="#">'+value.display_name+'</a></div></li>');        
+                     participantsList.append('<li role="option" tabindex="-1" data-theme="c"><a>'+value.display_name+'</a></div></li>');        
                      });
-                   $('#participants-list').listview();
+                   participantsList.listview();
+                   $.mobile.pageLoading( true );
                    },
                  });
             }
+        
+        if ( event.target.id.indexOf('participants') >= 0) {
+			// remove any existing swipe areas
+			$('.divSwipe').remove();
+			// add swipe event to the list item, removing it first (if it exists)
+			$('ul#participants-list li').unbind('swiperight').bind('swiperight', function(e){
+				// reference the just swiped list item
+				var $li = $(this);
+				// remove all swipe divs first
+				$('.divSwipe').remove();
+				// create buttons and div container
+				var $divSwipe = $('<div class="divSwipe"></div>');
+				var $myBtn01 = $('<a>Button One</a>')
+								.attr({
+									'class': 'aSwipeBtn ui-btn-up-b',
+									'href': 'page.html'
+								});
+				var $myBtn02 = $('<a>Button Two</a>')
+								.attr({
+									'class': 'aSwipeBtn ui-btn-up-e',
+									'href': 'page.html'
+								});
+				// insert swipe div into list item
+				$li.prepend($divSwipe);
+				// insert buttons into divSwipe
+				$divSwipe.prepend($myBtn01,$myBtn02).show(100);
+				// add escape route for swipe menu
+				$('body').bind('tap', function(e){
+					// if the triggering object is a button, fire it's tap event
+					if (e.target.className.indexOf('aSwipeBtn') >= 0) $(e.target).trigger('click'); 
+					// remove any existing cancel buttons
+					$('.divSwipe').remove();
+					// remove the event
+					$('body').unbind('tap');
+				});
+			});
+		}
+
+        
         
 function dump(arr,level) {
 	var dumped_text = "";
