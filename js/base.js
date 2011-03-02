@@ -57,9 +57,12 @@ $(function(){
 			// remove any existing swipe areas
 			$('.divSwipe').remove();
 			// add swipe event to the list item, removing it first (if it exists)
-			$('ul#participants-list li').unbind('swiperight').bind('swiperight', function(e){
+			$('ul.participants-list li').unbind('swiperight').bind('swiperight', function(e){
+			     alert('swiped');
 				// reference the just swiped list item
 				var $li = $(this);
+				
+				$li.addClass('test');
 				// remove all swipe divs first
 				$('.divSwipe').remove();
 				// create buttons and div container
