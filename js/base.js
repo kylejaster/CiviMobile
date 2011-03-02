@@ -42,11 +42,12 @@ $(function(){
                    ajaxURL: crmajaxURL,
                    success:function (data){
                    $('#participants').attr('id','participants-'+urlVars[0][1]);
-                   participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');  
+                   participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
+                   participantsList.empty();  
                    $.each(data.values, function(key, value) {
                      participantsList.append('<li role="option" tabindex="-1" data-theme="c"><a>'+value.display_name+'</a></div></li>');        
                      });
-                   participantsList.listview();
+                   participantsList.listview().listview('refresh');
                    $.mobile.pageLoading( true );
                    },
                  });
