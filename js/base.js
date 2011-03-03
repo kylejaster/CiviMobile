@@ -15,7 +15,7 @@ function getUrlVars() {
           ,{ 
             ajaxURL: crmajaxURL,
             success:function (data){
-              $('#home-content').append('<ul id="events-list" data-role="listview" data-inset="true"></ul>');
+              $('#home-content').append('<ul id="events-list" data-role="listview" data-inset="true" data-filter="true" ></ul>');
               $.each(data.values, function(key, value) {
                 $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
                 });
