@@ -15,6 +15,7 @@
     <script src="<?php print $civimobile_page_settings['civicrm_base'];?>/../js/rest.js"></script>
     <script>
          var crmajaxURL = '<?php print base_path(); ?>civicrm/ajax/rest';
+         var base_url =  '<?php print base_path(); ?>';
     </script>
     <script src="<?php print $civimobile_page_settings['civimobile_assets'];?>/js/base.js"></script>
   </head>

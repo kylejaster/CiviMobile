@@ -28,15 +28,19 @@ function getUrlVars() {
 $(function(){
 
 	$('div').live('pageshow',function(event, ui){
-
-        // get array of url params        
-        urlVars = getUrlVars();
-        console.log(urlVars);
         
-        // listen for click on event
-        // then generate participants page
+        console.log($.mobile.subPageUrlKey);
+        console.log(ui.toSource());
+        
+        // get array of url params        
+        var urlVars = getUrlVars();
+        
         if (urlVars.length >0){
             $.mobile.pageLoading();
+             
+             
+             // On Event Participants Listing page
+             if (urlVars[0][0] == 'event_id') {
              $().crmAPI ('Participant','get',{'version' :'3', 'event_id' : urlVars[0][1] }
                ,{ 
                    ajaxURL: crmajaxURL,
@@ -45,81 +49,26 @@ $(function(){
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
                    participantsList.empty();  
                    $.each(data.values, function(key, value) {
-                     participantsList.append('<li role="option" tabindex="-1" data-theme="c"><a>'+value.display_name+'</a></div></li>');        
+                     participant = '<li role="option" tabindex="-1" data-theme="c" data-icon="check"data-role="participant_id-'+value.participant_id+'">';
+                     participant += '<p class="ui-li-aside ui-li-desc"><strong>'+value.participant_status+'</strong></p>';
+                     participant += '<h3 class="ul-li-heading">'+value.display_name+'<h3>';
+                     participant += '<a href="'+base_url+'civimobile/status&participant_id="'+value.participant_id+'" data-rel="dialog" data-transition="pop"></a>';
+                     participant += '</li>';
+                     participantsList.append(participant);        
                      });
                    participantsList.listview().listview('refresh');
                    $.mobile.pageLoading( true );
                    },
                  });
             }
+            
         
-        if ( event.target.id.indexOf('participants') >= 0) {
-			// remove any existing swipe areas
-			$('.divSwipe').remove();
-			// add swipe event to the list item, removing it first (if it exists)
-			$('ul.participants-list li').unbind('swiperight').bind('swiperight', function(e){
-			     alert('swiped');
-				// reference the just swiped list item
-				var $li = $(this);
-				
-				$li.addClass('test');
-				// remove all swipe divs first
-				$('.divSwipe').remove();
-				// create buttons and div container
-				var $divSwipe = $('<div class="divSwipe"></div>');
-				var $myBtn01 = $('<a>Button One</a>')
-								.attr({
-									'class': 'aSwipeBtn ui-btn-up-b',
-									'href': 'page.html'
-								});
-				var $myBtn02 = $('<a>Button Two</a>')
-								.attr({
-									'class': 'aSwipeBtn ui-btn-up-e',
-									'href': 'page.html'
-								});
-				// insert swipe div into list item
-				$li.prepend($divSwipe);
-				// insert buttons into divSwipe
-				$divSwipe.prepend($myBtn01,$myBtn02).show(100);
-				// add escape route for swipe menu
-				$('body').bind('tap', function(e){
-					// if the triggering object is a button, fire it's tap event
-					if (e.target.className.indexOf('aSwipeBtn') >= 0) $(e.target).trigger('click'); 
-					// remove any existing cancel buttons
-					$('.divSwipe').remove();
-					// remove the event
-					$('body').unbind('tap');
-				});
-			});
-		}
+        
+        
+        }
+        
 
-        
-        
-function dump(arr,level) {
-	var dumped_text = "";
-	if(!level) level = 0;
-	
-	//The padding given at the beginning of the line.
-	var level_padding = "";
-	for(var j=0;j<level+1;j++) level_padding += "    ";
-	
-	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
-		for(var item in arr) {
-			var value = arr[item];
-			
-			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...\n";
-				dumped_text += dump(value,level+1);
-			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-			}
-		}
-	} else { //Stings/Chars/Numbers etc.
-		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-	}
-	return dumped_text;
- };
-        
+
         
 		function getUrlVars() {
 			var vars = [], hash;

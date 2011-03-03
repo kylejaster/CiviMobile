@@ -41,6 +41,16 @@ function civimobile_menu() {
       'type'             => MENU_NORMAL_ITEM,
     );
 
+    // Events page listing all events
+    $items['civimobile/status'] = array(
+      'title'            => 'CiviMobile',
+      'description'      => 'Participant Status',
+      'page callback'    => '_civimobile_participant_status_page',
+      'page arguments'   => array('events'),
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
+
   return $items;
 }
 
@@ -63,6 +73,13 @@ function _civimobile_participants_page() {
   include_once(drupal_get_path('module','civimobile').'/templates/civimobile.participants.tpl.php');
   return NULL;
 }
+
+function _civimobile_participant_status_page() {
+  $civimobile_page_settings = _civimobile_vars_setup();
+  include_once(drupal_get_path('module','civimobile').'/templates/civimobile.participant_status.tpl.php');
+  return NULL;
+}
+
 
 function _civimobile_vars_setup() {
   //  Left to somebody more knowledgeable than me to figure out
