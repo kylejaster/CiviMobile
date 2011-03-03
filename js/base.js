@@ -29,8 +29,8 @@ $(function(){
 
 	$('div').live('pageshow',function(event, ui){
         
-        console.log($.mobile.subPageUrlKey);
-        console.log(ui.toSource());
+      //  console.log($.mobile.subPageUrlKey);
+      //  console.log(ui.toSource());
         
         // get array of url params        
         var urlVars = getUrlVars();
@@ -49,10 +49,10 @@ $(function(){
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
                    participantsList.empty();  
                    $.each(data.values, function(key, value) {
-                     participant = '<li role="option" tabindex="-1" data-theme="c" data-icon="check"data-role="participant_id-'+value.participant_id+'">';
+                     participant = '<li role="option" tabindex="-1" data-theme="c" data-transition="slide-up" data-icon="check"data-role="participant_id-'+value.participant_id+'">';
                      participant += '<p class="ui-li-aside ui-li-desc"><strong>'+value.participant_status+'</strong></p>';
                      participant += '<h3 class="ul-li-heading">'+value.display_name+'<h3>';
-                     participant += '<a href="'+base_url+'civimobile/status&participant_id="'+value.participant_id+'" data-rel="dialog" data-transition="pop"></a>';
+                     participant += '<a href="'+base_url+'civimobile/status&participant_id='+value.participant_id+'&participant_status_id='+value.participant_status_id+'"  data-role="participant_status"></a>';
                      participant += '</li>';
                      participantsList.append(participant);        
                      });
@@ -62,13 +62,71 @@ $(function(){
                  });
             }
             
-        
-        
+            // On Participant Status page
+             if (urlVars[0][0] == 'participant_id') {
+                participant_status = $('#participant_status .participant_status-list');
+                participant_status.listview().listview('refresh');
+                participant_id = urlVars[0][1];
+                
+                $().crmAPI ('participant','get',{id:participant_id}, 
+               {
+                  ajaxURL: crmajaxURL,
+                  callBack: function(data,settings){
+                  $.mobile.pageLoading();
+                  if (data.is_error == 1) {
+                    $.mobile.pageLoading( true );
+                    alert('Whoops - flaky internet! Try again...');
+                  } else {
+                  $.each(data.values, function(key, value) {
+                     $('#jqm-participant_status .ui-title').html(value.display_name);
+                     $('#status-'+value.participant_status_id).attr('data-theme','b').toggleClass('ui-btn-up-c').toggleClass('ui-btn-up-b');       
+                     });
+                    $.mobile.pageLoading( true );
+
+
+                    
+                  }
+                  
+                }
+               });
+                
+                $('.status-button').click(function(){
+                    console.log('clicked '+participant_status);
+                    new_participant_status = $(this).attr('id').replace('status-','');
+                    setParticipantStatus(participant_id, new_participant_status);
+                });
+                
+            }
         
         }
+
+	});
+
+});
+
         
-
-
+        function setParticipantStatus(participant_id, status) {
+            console.log(participant_id+' '+status);
+            $.mobile.pageLoading();
+            
+            $().crmAPI ('participant','update',{id:participant_id,status_id:status}, 
+               {
+                  ajaxURL: crmajaxURL,
+                  callBack: function(result,settings){
+                  if (result.is_error == 1) {
+                    $.mobile.pageLoading( true );
+                    alert('Whoops - flaky internet! Try again...');
+                  } else {
+                    console.log('success');
+                    $.mobile.pageLoading( true );
+                    $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
+                    $('.ui-btn-hover-b').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
+                    $('#status-'+status).attr('data-theme','b').removeClass('ui-btn-up-c').addClass('ui-btn-up-b');
+                  }
+                  
+                }
+               });
+        }
         
 		function getUrlVars() {
 			var vars = [], hash;
@@ -81,28 +139,4 @@ $(function(){
 			return vars;
 		}
 
-	});
 
-});
-
-
-
-
-/*
-$().crmAPI ('participant','update',{id:id,status_id:toStatus}, 
-       {callBack: function(result,settings){
-          if (result.is_error == 1) {
-            $(settings.msgbox)
-            .addClass('msgnok')
-            .html(result.error_message);
-            return false;
-          } else {
-            $('#crm-participant_'+id)
-            .find('td.crm-participant-status_'+fromStatus)
-            .removeClass('crm-participant-status_'+fromStatus)
-            .addClass('crm-participant-status_'+toStatus)
-            .html(name); 
-          }
-        }
-       });
-       */
