@@ -118,8 +118,8 @@ $(function(){
                     console.log('success');
                     $.mobile.pageLoading( true );
                     $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
-                    $('.ui-btn-hover-b').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
-                    $('#status-'+status).attr('data-theme','b').removeClass('ui-btn-up-c').addClass('ui-btn-up-b');
+                    $('.ui-btn-hover-c').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
+                    $('#status-'+status).attr('data-theme','b').removeClass('ui-btn-up-c').removeClass('ui-btn-hover-c').addClass('ui-btn-up-b');
                   }
                   
                 }
