@@ -91,7 +91,6 @@ $(function(){
                });
                 
                 $('.status-button').click(function(){
-                    console.log('clicked '+participant_status);
                     new_participant_status = $(this).attr('id').replace('status-','');
                     setParticipantStatus(participant_id, new_participant_status);
                 });
@@ -106,7 +105,6 @@ $(function(){
 
         
         function setParticipantStatus(participant_id, status) {
-            console.log(participant_id+' '+status);
             $.mobile.pageLoading();
             
             $().crmAPI ('participant','update',{id:participant_id,status_id:status}, 
