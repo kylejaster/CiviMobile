@@ -3,9 +3,8 @@
 
 <div data-role="page" data-theme="b" id="jqm-events"> 
 <script>
-console && console.log ("event page...");
 $(function (){
-console && console.log ("loading...");
+window.console && console && console.log ("loading...");
       $().crmAPI ('Event','get',{'version' :'3' }
         ,{ 
           ajaxURL: crmajaxURL,
