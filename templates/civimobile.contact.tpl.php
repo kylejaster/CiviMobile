@@ -25,6 +25,7 @@ include('civimobile.header.php');
 
       </ul>
     </div><!-- /navbar -->
+        <a href="#" class="ui-btn-active" data-rel="back" data-icon="arrow-l" class="ui-btn-right">Back</a>
   </div><!-- /header -->
 	
 	<div data-role="content" id="contact-content"> 
