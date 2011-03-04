@@ -1,19 +1,24 @@
 <? require('civimobile.header.php'); 
 ?>
 <script>
-/*$().crmAPI ('Event','get',{'version' :'3', }
-  ,{ success:function (data){    
-alert ("why is that called?");
-      $.each(data, function(key, value) {
-        $('#jqm-events').append(value+'<br />');
-      });
-    }
+/* why isn't it called all the time ?!? */
+jQuery(document).ready(function($) {
+<?
+   $results=json_encode (civicrm_api("Contact","get", array ('sequential' =>'1', 'version'=>3, 'return' =>'display_name,phone')));	
+   //$results=json_encode (civicrm_api("Contact","get", array ('sequential' =>'1')));	
+   echo "contacts = $results;\n";
+?>
+   $('#contact-content').html('<ul id="contacts" data-role="listview" data-inset="true" data-filter="true" ></ul>');
+ 
+   $.each(contacts.values, function(key, value) {
+      $('#contacts').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.contact_id+'" ><a href="/civimobile/contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
+              });
+            $('#contacts').listview();
 });
-*/
 </script>
 
 <div data-role="page" data-theme="b" id="jqm-contacts"> 
-	<div id="jqm-homeheader" data-role="header">
+	<div id="jqm-contactsheader" data-role="header">
     <div data-role="navbar">
       <ul>
         <li><a href="/civimobile/contact" class="ui-btn-active">Contacts</a></li>
@@ -23,11 +28,7 @@ alert ("why is that called?");
 
 	</div> 
 	
-	<div data-role="content"> 
-		
-		<ul data-role="listview"  data-filter="true" data-inset="true" data-theme="c" data-dividertheme="b"> 
-			<li data-role="list-divider" role="heading" tabindex="0">Contacts</li>
-		</ul> 
+	<div data-role="content" id="contact-content"> 
 	</div> 
 </div> 
 
