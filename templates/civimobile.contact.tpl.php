@@ -15,17 +15,7 @@ include('civimobile.header.php');
 <div data-role="page" data-theme="b" id="jqm-contacts">
 
  <div data-role="header" data-theme="b">
-    <!--h1>Contact details</h1>
-    <a href="../../" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a-->
-
-    <div data-role="navbar">
-      <ul>
-        <li><a href="/civimobile/contact" class="ui-btn-active">Contacts</a></li>
-        <li><a href="/civimobile/events">Events</a></li>
-
-      </ul>
-    </div><!-- /navbar -->
-        <a href="#" class="ui-btn-active" data-rel="back" data-icon="arrow-l" class="ui-btn-right">Back</a>
+<? navbar(true); ?>
   </div><!-- /header -->
 	
 	<div data-role="content" id="contact-content"> 
