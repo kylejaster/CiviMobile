@@ -1,9 +1,9 @@
 <? require('civimobile.header.php'); 
 ?>
 <script>
+console && console.log ("event page...");
 $(function (){
 console && console.log ("loading...");
-            $('#event-content').html('<ul id="events-list" data-role="listview" data-inset="true" data-filter="true" ></ul>');
       $().crmAPI ('Event','get',{'version' :'3' }
         ,{ 
           ajaxURL: crmajaxURL,

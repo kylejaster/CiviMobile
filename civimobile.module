@@ -51,9 +51,31 @@ function civimobile_menu() {
       'type'             => MENU_NORMAL_ITEM,
     );
 
+    $items['civimobile/contact'] = array(
+      'title'            => 'Contacts',
+      'page callback'    => '_civimobile_page',
+      'page arguments'   => array('contact_list',null),
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
+
+    $items['civimobile/contact/%'] = array(
+      'title'            => 'Contact',
+      'page callback'    => '_civimobile_page',
+      'page arguments'   => array('contact',2),
+      'access arguments' => array('access CiviCRM'),
+      'type'             => MENU_NORMAL_ITEM,
+    );
+
   return $items;
 }
 
+function _civimobile_page($page,$param= null ) {
+  $civimobile_page_settings = _civimobile_vars_setup();
+  $pagepath = drupal_get_path('module','civimobile')."/templates/civimobile.$page.tpl.php";
+  include_once($pagepath);
+  return NULL;
+}
 /**
  * Callback for menu item civimobile
  */
