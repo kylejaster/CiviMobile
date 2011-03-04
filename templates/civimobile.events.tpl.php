@@ -1,5 +1,7 @@
 <? require('civimobile.header.php'); 
 ?>
+
+<div data-role="page" data-theme="b" id="jqm-events"> 
 <script>
 console && console.log ("event page...");
 $(function (){
@@ -18,8 +20,6 @@ console && console.log ("loading...");
       );
 });
 </script>
-
-<div data-role="page" data-theme="b" id="jqm-events"> 
 	<div id="jqm-homeheader">
     <div data-role="navbar">
       <ul>
