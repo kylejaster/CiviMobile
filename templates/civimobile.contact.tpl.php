@@ -9,8 +9,8 @@
 //print_r($contact);
  ?>
 
-<?// this doesn't work if put at the top of the previous block ?! 
-require('civimobile.header.php');
+<? 
+include('civimobile.header.php');
 ?>
 <div data-role="page" data-theme="b" id="jqm-contacts">
 
