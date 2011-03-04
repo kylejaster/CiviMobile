@@ -1,5 +1,6 @@
-<?php 
-// $Id: page.tpl.php,v 1.0 kylejaster Exp $ ?>
+<?php  // $Id: page.tpl.php,v 1.0 kylejaster Exp $ 
+if(!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')):
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $civimobile_page_settings['language'] ?>" lang="<?php print $civimobile_page_settings['language'] ?>" >
   <head>
@@ -20,3 +21,4 @@
     <script src="<?php print $civimobile_page_settings['civimobile_assets'];?>/js/base.js"></script>
   </head>
 <body> 
+<? endif; ?>
