@@ -23,8 +23,8 @@ console && console.log ("loading...");
 	<div id="jqm-homeheader">
     <div data-role="navbar">
       <ul>
-        <li><a href="/civimobile/contact">Contacts</a></li>
-        <li><a href="/civimobile/events" class="ui-btn-active">Events</a></li>
+        <li><a href="/civimobile/contact" data-ajax="false">Contacts</a></li>
+        <li><a href="/civimobile/events" class="ui-btn-active" data-ajax="false">Events</a></li>
       </ul>
     </div><!-- /navbar -->
 	</div> 

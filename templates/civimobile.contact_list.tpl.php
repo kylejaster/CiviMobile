@@ -6,8 +6,8 @@
 	<div id="jqm-contactsheader" data-role="header">
     <div data-role="navbar">
       <ul>
-        <li><a href="/civimobile/contact" class="ui-btn-active">Contacts</a></li>
-        <li><a href="/civimobile/events">Events</a></li>
+        <li><a href="/civimobile/contact" class="ui-btn-active" data-ajax="false">Contacts</a></li>
+        <li><a href="/civimobile/events" data-ajax="false">Events</a></li>
       </ul>
     </div><!-- /navbar -->
 
@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
               $('#contact-content').html('<ul id="contacts" data-role="listview" data-inset="true" data-filter="true" ></ul>');
               $('#home-content').append('<ul id="events-list" data-role="listview" data-inset="true" data-filter="true" ></ul>');
                 $.each(data.values, function(key, value) {
-      $('#contacts').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.contact_id+'" ><a href="/civimobile/contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
+      $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="event-'+value.contact_id+'" ><a href="/civimobile/contact/'+value.contact_id+'/" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
               });
             $('#contacts').listview();
               },
