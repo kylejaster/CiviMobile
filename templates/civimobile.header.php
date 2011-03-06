@@ -21,14 +21,14 @@ if(!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
     <script src="<?php print $civimobile_page_settings['civimobile_assets'];?>/js/base.js"></script>
   </head>
 <body> 
-<? endif; 
+<?php endif; 
 
 function navbar ($back = false) {
 echo "
     <div data-role='navbar'>
       <ul>
-        <li><a href='/civimobile/contact' class='ui-btn-active'>Contacts</a></li>
-        <li><a href='/civimobile/events'>Events</a></li>
+        <li><a href='".base_path()."civimobile/contact' class='ui-btn-active'>Contacts</a></li>
+        <li><a href='".base_path()."civimobile/events'>Events</a></li>
 
       </ul>
     </div>";

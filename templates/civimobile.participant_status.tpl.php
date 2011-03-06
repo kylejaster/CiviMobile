@@ -1,5 +1,5 @@
 
-<?
+<?php
  require_once('civimobile.header.php'); 
 
 ?>
@@ -22,4 +22,4 @@
 	 
 </div> 
 
-<? require('civimobile.footer.php'); ?>
+<?php require('civimobile.footer.php'); ?>
