@@ -9,7 +9,7 @@
 	</div> 
 	
 	<div data-role="content" id="participants-content"> 
-        <ul class="participants-list" data-filter="true" data-role="list-view"></ul>
+        <ul class="participants-list" data-role="listview" data-filter="true"></ul>
 	</div> 
 </div> 
 
