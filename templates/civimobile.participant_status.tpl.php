@@ -12,6 +12,7 @@
           <a id="status-1" data-role="button" class="status-button" href="#">Registered</a>
           <a id="status-2" data-role="button" class="status-button" href="#">Attended</a>
           <a id="status-3" data-role="button" class="status-button" href="#">No-show</a>
+          <a id="contact-record" data-role="button" href="#civimobile/contact/5">View Contact Record</a>
 	</div>
 	<script>
     

@@ -1,5 +1,4 @@
 <?php require('civimobile.header.php'); 
-
 global $base_url;
 
 ?>
@@ -14,7 +13,7 @@ window.console && console && console.log ("loading...");
           success:function (data){
             $('#event-content').html('<ul id="events-list" data-role="listview" data-inset="true" data-filter="true" ></ul>');
             $.each(data.values, function(key, value) {
-              $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
+              $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="'+base_url+'civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
               });
             $('#events-list').listview();
             },

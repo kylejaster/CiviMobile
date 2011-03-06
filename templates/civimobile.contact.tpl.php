@@ -28,8 +28,15 @@ include('civimobile.header.php');
 	
 	<div data-role="content" id="contact-content"> 
         
-        <div><a href="mailto:<?php print $contact['email'];?>" data-role="button"><?php print $contact['email'];?></a></div>
-        <div><a href="tel:<?php print $contact['phone'];?>" data-role="button"><?php print $contact['phone'];?></a></div>
+        <div class="contact-email-address">
+            <?php if ($contact['email'] =='') : echo 'No email address for contact'; else: ?>
+            <a href="mailto:<?php print $contact['email'];?>" data-role="button"><?php print $contact['email'];?></a>
+            <?php endif; ?>
+        </div>
+        <div>
+            <?php if ($contact['phone'] =='') : echo 'No phone number for contact'; else: ?>
+            <a href="tel:<?php print $contact['phone'];?>" data-role="button"><?php print $contact['phone'];?></a></div>
+            <?php endif; ?>
         <div><?php print $contact['group'];?></div>
         <div><?php print $contact['tag'];?></div>
 	</div> 

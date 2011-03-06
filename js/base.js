@@ -67,10 +67,12 @@ $(function(){
                     alert('Whoops - flaky internet! Try again...');
                   } else {
                   $.each(data.values, function(key, value) {
+                     $.mobile.pageLoading( true );
                      $('#jqm-participant_status .ui-title').html(value.display_name);
                      $('#status-'+value.participant_status_id).attr('data-theme','b').toggleClass('ui-btn-up-c').toggleClass('ui-btn-up-b');       
+                     $('#contact-record').attr('href','#civimobile/contact/'+value.contact_id);
                      });
-                    $.mobile.pageLoading( true );
+                    
 
 
                     
