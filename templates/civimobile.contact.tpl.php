@@ -8,11 +8,14 @@
     
     // get last arg of path (contact id)
     $contact_id = end(split('/', $parse_url));
-    $results=civicrm_api("Contact","get", array ('sequential' =>'1', 'version'=>3, 'contact_id' => $contact_id, 'return' =>'display_name,email,phone,tag,group'));	
+    $results    = civicrm_api("Contact","get", 
+                    array ( 'sequential' =>'1', 
+                            'version'=>3, 
+                            'contact_id' => $contact_id, 
+                            'return' =>'display_name,email,phone,tag,group')
+                            );	
     $contact = $results['values'][0];
-
-   print_r($contact);
- ?>
+    ?>
 
 <?php 
 include('civimobile.header.php');
@@ -25,8 +28,8 @@ include('civimobile.header.php');
 	
 	<div data-role="content" id="contact-content"> 
         
-        <div><a href="mailto:<?php print $contact['email'];?>"><?php print $contact['email'];?></a></div>
-        <div><a href="tel:<?php print $contact['phone'];?>"><?php print $contact['phone'];?></a></div>
+        <div><a href="mailto:<?php print $contact['email'];?>" data-role="button"><?php print $contact['email'];?></a></div>
+        <div><a href="tel:<?php print $contact['phone'];?>" data-role="button"><?php print $contact['phone'];?></a></div>
         <div><?php print $contact['group'];?></div>
         <div><?php print $contact['tag'];?></div>
 	</div> 
