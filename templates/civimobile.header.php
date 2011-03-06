@@ -24,11 +24,17 @@ if(!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 <?php endif; 
 
 function navbar ($back = false) {
+if ($back) { 
+  $ajax="true";
+} else {
+  $ajax="false";
+}  
+
 echo "
     <div data-role='navbar'>
       <ul>
-        <li><a href='".base_path()."civimobile/contact' class='ui-btn-active'>Contacts</a></li>
-        <li><a href='".base_path()."civimobile/events'>Events</a></li>
+        <li><a href='/civimobile/contact' class='ui-btn-active' data-ajax='$ajax'>Contacts</a></li>
+        <li><a href='/civimobile/events' data-ajax='$ajax'>Events</a></li>
 
       </ul>
     </div>";
