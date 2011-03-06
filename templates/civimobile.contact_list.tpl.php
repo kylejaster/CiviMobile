@@ -13,8 +13,7 @@
 	</div> 
 	
 	<div data-role="content" id="contact-content"> 
-<div data-role="fieldcontain" data-theme="c">
-    <label for="search">Find Contacts </label>
+<div class="ui-listview-filter ui-bar-c">
     <input type="search" name="sort_name" id="sort_name" value="" />
 </div>
 
@@ -29,7 +28,7 @@ jQuery(document).ready(function($) {
    echo "contacts = $results;\n";
     ///start with all the contacts (well the 25 first, ordered by the ever so useful contact_id), would be great to sort by desc modification date & user = current user? 
 ?>
-   $('#contact-content').append('<ul id="contacts" data-role="listview" data-inset="true" data-filter="false" ></ul>');
+   $('#contact-content').append('<ul id="contacts" data-role="listview" data-inset="false" data-filter="false" ></ul>');
    $.each(contacts.values, function(key, value) {
      $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="contact-'+value.contact_id+'" ><a href="#contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
    });
@@ -44,6 +43,7 @@ jQuery(document).ready(function($) {
 
 
 function contactSearch (q){
+    $.mobile.pageLoading( );
     $().crmAPI ('Contact','get',{'version' :'3', 'sort_name': q, 'return' : 'display_name,phone' }
           ,{ 
             ajaxURL: crmajaxURL,
@@ -59,6 +59,7 @@ function contactSearch (q){
               $.each(data.values, function(key, value) {
                 $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="event-'+value.contact_id+'" ><a href="#contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
               });
+           $.mobile.pageLoading( true );
            $('#contacts').listview(cmd);
           }
    });
