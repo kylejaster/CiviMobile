@@ -107,9 +107,8 @@ function _civimobile_vars_setup() {
   //  Left to somebody more knowledgeable than me to figure out
   //  can't figure out how to load civicrm's Config.php file from here
   //
-  //  require_once '../civicrm/CRM/Core/Config.php';
-  //  $config   = CRM_Core_Config::singleton( );
-  //  $civimobile_vars['civicrm_base'] = $config->userFrameworkResourceURL;
+    civicrm_initialize();
+    require_once 'api/api.php';
     
     $civimobile_vars['language'] = $GLOBALS['locale'];
     $civimobile_vars['title']   = 'CiviMobile';

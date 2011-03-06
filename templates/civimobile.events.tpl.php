@@ -1,4 +1,7 @@
-<? require('civimobile.header.php'); 
+<?php require('civimobile.header.php'); 
+
+global $base_url;
+
 ?>
 
 <div data-role="page" data-theme="b" id="jqm-events"> 
@@ -22,8 +25,8 @@ window.console && console && console.log ("loading...");
 	<div id="jqm-homeheader">
     <div data-role="navbar">
       <ul>
-        <li><a href="/civimobile/contact" data-ajax="false">Contacts</a></li>
-        <li><a href="/civimobile/events" class="ui-btn-active" data-ajax="false">Events</a></li>
+        <li><a href="<?php print $base_url.base_path(); ?>contact" data-ajax="false">Contacts</a></li>
+        <li><a href="<?php print $base_url.base_path(); ?>events" class="ui-btn-active" data-ajax="false">Events</a></li>
       </ul>
     </div><!-- /navbar -->
 	</div> 
@@ -33,4 +36,4 @@ window.console && console && console.log ("loading...");
 	</div> 
 </div> 
 
-<? require('civimobile.footer.php'); ?>
+<?php require('civimobile.footer.php'); ?>

@@ -1,30 +1,35 @@
 
-<?
-    $contact_id=$param;
-//@kyle: any idea why it doesn't work? 
-   //$contact_id=(int)$param;
+<?php
+    $url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+
+
+    $parse_url = parse_url($url, PHP_URL_PATH);
+    
+    
+    // get last arg of path (contact id)
+    $contact_id = end(split('/', $parse_url));
     $results=civicrm_api("Contact","get", array ('sequential' =>'1', 'version'=>3, 'contact_id' => $contact_id, 'return' =>'display_name,email,phone,tag,group'));	
     $contact = $results['values'][0];
 
-//print_r($contact);
+   print_r($contact);
  ?>
 
-<? 
+<?php 
 include('civimobile.header.php');
 ?>
 <div data-role="page" data-theme="b" id="jqm-contacts">
 
  <div data-role="header" data-theme="b">
-<? navbar(true); ?>
+    <h3><?php print $contact['display_name'];?></h3>
   </div><!-- /header -->
 	
 	<div data-role="content" id="contact-content"> 
-<h3><?= $contact['display_name'];?></h3>
-<div><a href="mailto:<?= $contact['email'];?>"><?= $contact['email'];?></a></div>
-<div><a href="tel:<?= $contact['phone'];?>"><?= $contact['phone'];?></a></div>
-<div><?= $contact['group'];?></div>
-<div><?= $contact['tag'];?></div>
+        
+        <div><a href="mailto:<?php print $contact['email'];?>"><?php print $contact['email'];?></a></div>
+        <div><a href="tel:<?php print $contact['phone'];?>"><?php print $contact['phone'];?></a></div>
+        <div><?php print $contact['group'];?></div>
+        <div><?php print $contact['tag'];?></div>
 	</div> 
 </div> 
 
-<? require('civimobile.footer.php'); ?>
+<?php require('civimobile.footer.php'); ?>

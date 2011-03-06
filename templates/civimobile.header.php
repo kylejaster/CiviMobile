@@ -33,9 +33,8 @@ if ($back) {
 echo "
     <div data-role='navbar'>
       <ul>
-        <li><a href='/civimobile/contact' class='ui-btn-active' data-ajax='$ajax'>Contacts</a></li>
-        <li><a href='/civimobile/events' data-ajax='$ajax'>Events</a></li>
-
+        <li><a href='".base_url().base_path()."/civimobile/contact' class='ui-btn-active' data-ajax='$ajax'>Contacts</a></li>
+        <li><a href='".base_url().base_path()."/civimobile/events' data-ajax='$ajax'>Events</a></li>
       </ul>
     </div>";
  if ($back) {

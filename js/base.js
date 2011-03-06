@@ -1,14 +1,3 @@
-function getUrlVars() {
-			var vars = [], hash;
-			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-			for(var i = 0; i < hashes.length; i++) {
-				hash = hashes[i].split('=');
-				vars.push(hash[0]);
-				vars[hash[0]] = hash[1];
-			}
-			return vars;
-		}
-
 
         // generate list of events
         $().crmAPI ('Event','get',{'version' :'3' }
@@ -47,7 +36,7 @@ $(function(){
                    success:function (data){
                    $('#participants').attr('id','participants-'+urlVars[0][1]);
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
-                   participantsList.empty();  
+                   participantsList.empty();
                    $.each(data.values, function(key, value) {
                      participant = '<li role="option" tabindex="-1" data-theme="c" data-transition="slide-up" data-icon="check"data-role="participant_id-'+value.participant_id+'">';
                      participant += '<p class="ui-li-aside ui-li-desc"><strong>'+value.participant_status+'</strong></p>';
