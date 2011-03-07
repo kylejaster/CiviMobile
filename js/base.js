@@ -35,6 +35,7 @@ $(function(){
                    ajaxURL: crmajaxURL,
                    success:function (data){
                    $('#participants').attr('id','participants-'+urlVars[0][1]);
+                   $('#jqm-participants h3').html (data.count+' Participants');
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
                    participantsList.empty();
                    $.each(data.values, function(key, value) {
