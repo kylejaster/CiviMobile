@@ -106,7 +106,7 @@ $(function(){
                     $.mobile.pageLoading( true );
                     alert('Whoops - flaky internet! Try again...');
                   } else {
-                    console.log('success');
+                    window.console && console && console.log('success setting participant status');
                     $.mobile.pageLoading( true );
                     $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
                     $('.ui-btn-hover-c').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
