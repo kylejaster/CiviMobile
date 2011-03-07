@@ -1,7 +1,4 @@
-<?php require('civimobile.header.php'); 
-global $base_url;
-
-?>
+<?php require('civimobile.header.php'); ?>
 
 <div data-role="page" data-theme="b" id="jqm-events"> 
 <script>
@@ -11,7 +8,7 @@ window.console && console && console.log ("loading...");
         ,{ 
           ajaxURL: crmajaxURL,
           success:function (data){
-            $('#event-content').html('<ul id="events-list" data-role="listview" data-filter="true" ></ul>');
+            $('#event-content').html('<ul id="events-list" data-role="listview" data-inset="true" data-filter="false" ></ul>');
             $.each(data.values, function(key, value) {
               $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="'+base_url+'civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
               });
@@ -22,17 +19,21 @@ window.console && console && console.log ("loading...");
 });
 </script>
 	<div id="jqm-homeheader">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="<?php print $base_url.base_path(); ?>contact" data-ajax="false">Contacts</a></li>
-        <li><a href="<?php print $base_url.base_path(); ?>events" class="ui-btn-active" data-ajax="false">Events</a></li>
-      </ul>
-    </div><!-- /navbar -->
+        <div data-role="header" data-theme="b">
+            <h3>Events</h3>
+        </div>
 	</div> 
 	
 	<div data-role="content" id="event-content"> 
-	  <div>Loading...</div>	
-	</div> 
+	</div>
+	<div data-role="footer" data-id="global-footer" data-position="fixed" data-theme="a">
+	<div data-role="navbar" data-theme="a">
+      <ul>
+        <li><a href="<?php print $base_url.base_path(); ?>contact" data-ajax="false" data-icon="search">Contacts</a></li>
+        <li><a href="<?php print $base_url.base_path(); ?>events" class="ui-btn-active" data-ajax="false" data-icon="grid">Events</a></li>
+      </ul>
+    </div><!-- /navbar -->
+    </div><!-- /footer --> 
 </div> 
 
 <?php require('civimobile.footer.php'); ?>

@@ -1,25 +1,25 @@
-<? require('civimobile.header.php'); 
-?>
+<? require('civimobile.header.php'); ?>
 
 
 <div data-role="page" data-theme="b" id="jqm-contacts"> 
 	<div id="jqm-contactsheader" data-role="header">
-	    <div data-role="navbar">
-      <ul>
-        <li><a href="<?php print $base_url.base_path(); ?>civimobile/contact" data-ajax="false">Contacts</a></li>
-        <li><a href="<?php print $base_url.base_path(); ?>civimobile/events" class="ui-btn-active" data-ajax="false">Events</a></li>
-      </ul>
-    </div><!-- /navbar -->
+        <h3>Search Contacts</h3>
 	</div> 
 	
 	<div data-role="content" id="contact-content"> 
-<div class="ui-listview-filter ui-bar-c">
-    <input type="search" name="sort_name" id="sort_name" value="" />
-</div>
-
-
-
-	</div> 
+    <div class="ui-listview-filter ui-bar-c">
+        <input type="search" name="sort_name" id="sort_name" value="" />
+    </div>
+    </div> 
+    <div data-role="footer" data-id="global-footer" data-position="fixed" data-theme="a">
+	<div data-role="navbar" data-theme="a">
+      <ul>
+        <li><a href="<?php print $base_url.base_path(); ?>contact" class="ui-btn-active" data-ajax="false" data-icon="search">Contacts</a></li>
+        <li><a href="<?php print $base_url.base_path(); ?>events" data-ajax="false" data-icon="grid">Events</a></li>
+      </ul>
+    </div><!-- /navbar -->
+    </div><!-- /footer --> 
+    
 	<script>
 jQuery(document).ready(function($) {
     

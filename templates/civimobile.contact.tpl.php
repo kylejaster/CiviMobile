@@ -8,13 +8,20 @@
     
     // get last arg of path (contact id)
     $contact_id = end(split('/', $parse_url));
-    $results    = civicrm_api("Contact","get", 
+    $results = civicrm_api("Contact","get", 
                     array ( 'sequential' =>'1', 
                             'version'=>3, 
                             'contact_id' => $contact_id, 
-                            'return' =>'display_name,email,phone,tag,group')
+                            'return' =>'display_name,email,phone,tag,group,contact_type,street_address,city,postal_code,state_province')
                             );	
     $contact = $results['values'][0];
+    
+   // $contrib_params = array ('version' =>'3', 'contact_id' =>$contact_id};
+    $contrib_results=civicrm_api("Contribution","get",
+                            array ( 'sequential' =>'1', 
+                                    'version'=>3, 
+                                    'contact_id' => $contact_id) 
+                                    );
     ?>
 
 <?php 
@@ -27,16 +34,42 @@ include('civimobile.header.php');
   </div><!-- /header -->
 	
 	<div data-role="content" id="contact-content"> 
-        
-        <div class="contact-email-address">
-            <?php if ($contact['email'] =='') : echo 'No email address for contact'; else: ?>
-            <a href="mailto:<?php print $contact['email'];?>" data-role="button"><?php print $contact['email'];?></a>
-            <?php endif; ?>
+        <div class="contact-type">
+        <?php if ($contrib_results['count'] > 0) : 
+                print 'This '.$contact['contact_type'].' has made '.$contrib_results['count'].' contribution'; 
+                if ($contrib_results['count'] >1) :print 's';
+                endif;
+                else :
+                print 'Contact type: '.$contact['contact_type'];
+               endif; ?>
         </div>
-        <div>
-            <?php if ($contact['phone'] =='') : echo 'No phone number for contact'; else: ?>
-            <a href="tel:<?php print $contact['phone'];?>" data-role="button"><?php print $contact['phone'];?></a></div>
-            <?php endif; ?>
+<div class="vcard">
+  <div class="tel">
+    
+   <?php if ($contact['phone'] =='') : echo 'No phone number for contact'; else: ?>
+     <a href="tel:<?php print $contact['phone'];?>" data-role="button">
+      <span class="type">Phone :</span> <?php print $contact['phone'];?>
+     </a>
+   <?php endif; ?>
+  </div>
+  <?php if ($contact['email'] != '') : ?>
+  <div> 
+   <span class="email">
+          <a href="mailto:<?php print $contact['email'];?>" data-role="button">Email: <?php print $contact['email'];?></a>
+      </span>
+  </div>  
+  <?php endif; ?>
+
+  <div class="adr">
+    <div class="street-address"><?php print $contact['street_address'];?></div>
+    <span class="locality"><?php print $contact['city'];?></span><?php if($contact['city'] != '') : ?>,<?php endif; ?>  
+    <abbr class="region" title="<?php print $contact['state_province'];?>"><?php print $contact['state_province'];?></abbr>&nbsp;
+    <span class="postal-code"><?php print $contact['postal_code'];?></span>
+    <div class="country-name"><?php print $contact['country'];?></div>
+  </div>
+
+</div>    
+            
         <div><?php print $contact['group'];?></div>
         <div><?php print $contact['tag'];?></div>
 	</div> 

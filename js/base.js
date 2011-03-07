@@ -30,7 +30,9 @@ $(function(){
              
              // On Event Participants Listing page
              if (urlVars[0][0] == 'event_id') {
-             $().crmAPI ('Participant','get',{'version' :'3', 'event_id' : urlVars[0][1] }
+             $().crmAPI ('Participant','get',
+                    {'version' :'3', 'event_id' : urlVars[0][1], 
+                    'return' : 'participant_status,participant_id,display_name,participant_status_id' }
                ,{ 
                    ajaxURL: crmajaxURL,
                    success:function (data){
@@ -38,12 +40,13 @@ $(function(){
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
                    participantsList.empty();
                    $.each(data.values, function(key, value) {
+                     $('#participants-'+urlVars[0][1]+' h3.ui-title').html(value.event_title+' Participants');
                      participant = '<li role="option" tabindex="-1" data-theme="c" data-transition="slide-up" data-icon="check"data-role="participant_id-'+value.participant_id+'">';
                      participant += '<p class="ui-li-aside ui-li-desc"><strong>'+value.participant_status+'</strong></p>';
                      participant += '<h3 class="ul-li-heading">'+value.display_name+'<h3>';
                      participant += '<a href="'+base_url+'civimobile/status&participant_id='+value.participant_id+'&participant_status_id='+value.participant_status_id+'"  data-role="participant_status"></a>';
                      participant += '</li>';
-                     participantsList.append(participant);        
+                     participantsList.append(participant);    
                      });
                    participantsList.listview().listview('refresh');
                    $.mobile.pageLoading( true );
@@ -57,8 +60,7 @@ $(function(){
                 participant_status.listview().listview('refresh');
                 participant_id = urlVars[0][1];
                 
-                $().crmAPI ('participant','get',{id:participant_id}, 
-               {
+                $().crmAPI ('participant','get',{id:participant_id, 'return': 'display_name,participant_status_id,contact_id'}, {
                   ajaxURL: crmajaxURL,
                   callBack: function(data,settings){
                   $.mobile.pageLoading();
@@ -72,12 +74,7 @@ $(function(){
                      $('#status-'+value.participant_status_id).attr('data-theme','b').toggleClass('ui-btn-up-c').toggleClass('ui-btn-up-b');       
                      $('#contact-record').attr('href','#civimobile/contact/'+value.contact_id);
                      });
-                    
-
-
-                    
-                  }
-                  
+                    }
                 }
                });
                 
@@ -97,7 +94,6 @@ $(function(){
         
         function setParticipantStatus(participant_id, status) {
             $.mobile.pageLoading();
-            
             $().crmAPI ('participant','update',{id:participant_id,status_id:status}, 
                {
                   ajaxURL: crmajaxURL,
@@ -106,13 +102,13 @@ $(function(){
                     $.mobile.pageLoading( true );
                     alert('Whoops - flaky internet! Try again...');
                   } else {
+                    
                     console.log('success');
                     $.mobile.pageLoading( true );
                     $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
                     $('.ui-btn-hover-c').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
-                    $('#status-'+status).attr('data-theme','b').removeClass('ui-btn-up-c').removeClass('ui-btn-hover-c').addClass('ui-btn-up-b');
+                    $('#status-'+result.status_id).attr('data-theme','b').removeClass('ui-btn-up-c').removeClass('ui-btn-hover-c').addClass('ui-btn-up-b');
                   }
-                  
                 }
                });
         }
