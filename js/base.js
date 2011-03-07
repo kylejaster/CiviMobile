@@ -37,6 +37,7 @@ $(function(){
                    ajaxURL: crmajaxURL,
                    success:function (data){
                    $('#participants').attr('id','participants-'+urlVars[0][1]);
+                   $('#jqm-participants h3').html (data.count+' Participants');
                    participantsList = $('#participants-'+urlVars[0][1]+' .participants-list');
                    participantsList.empty();
                    $.each(data.values, function(key, value) {
@@ -102,8 +103,6 @@ $(function(){
                     $.mobile.pageLoading( true );
                     alert('Whoops - flaky internet! Try again...');
                   } else {
-                    
-                    console.log('success');
                     $.mobile.pageLoading( true );
                     $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
                     $('.ui-btn-hover-c').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
