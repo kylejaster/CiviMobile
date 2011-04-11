@@ -21,6 +21,8 @@ window.console && console && console.log ("loading...");
 	<div id="jqm-homeheader">
         <div data-role="header" data-theme="b">
             <h3>Events</h3>
+            	    <a href="/civimobile/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+
         </div>
 	</div> 
 	

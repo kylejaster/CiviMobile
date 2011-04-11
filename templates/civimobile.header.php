@@ -10,9 +10,9 @@ if(!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
     <?php print $civimobile_page_settings['styles'] ?>
     <?php print $civimobile_page_settings['scripts'] ?>
 
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
-    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+    <link rel="stylesheet" href="<?php print $civimobile_page_settings['civimobile_assets']; ?>/libraries/jquery.mobile-1.0a3/jquery.mobile-1.0a3.min.css" />
+    <script src="<?php print  $civimobile_page_settings['civimobile_assets']; ?>/libraries/jquery.mobile-1.0a3/jquery-1.5.min.js"></script>
+    <script src="<?php print  $civimobile_page_settings['civimobile_assets']; ?>/libraries/jquery.mobile-1.0a3/jquery.mobile-1.0a3.min.js"></script>
     <script src="<?php print $civimobile_page_settings['civicrm_base'];?>/../js/rest.js"></script>
     <script>
          var crmajaxURL = '<?php print base_path(); ?>civicrm/ajax/rest';

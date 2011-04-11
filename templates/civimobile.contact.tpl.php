@@ -31,6 +31,8 @@ include('civimobile.header.php');
 
  <div data-role="header" data-theme="b">
     <h3><?php print $contact['display_name'];?></h3>
+    	    <a href="/civimobile/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+
   </div><!-- /header -->
 	
 	<div data-role="content" id="contact-content"> 
@@ -73,6 +75,30 @@ include('civimobile.header.php');
         <div><?php print $contact['group'];?></div>
         <div><?php print $contact['tag'];?></div>
 	</div> 
+
+<script language="javascript" type="text/javascript">
+			function getLocation() {
+				// Get location no more than 10 minutes old. 600000 ms = 10 minutes.
+				navigator.geolocation.getCurrentPosition(showLocation, showError, {enableHighAccuracy:true,maximumAge:600000});
+			}
+ 
+			function showError(error) {
+				alert(error.code + ' ' + error.message);
+			}
+ 
+			function showLocation(position) {
+				geoinfo.innerHTML='<p>Latitude: ' + position.coords.latitude + '</p>' 
+				+ '<p>Longitude: ' + position.coords.longitude + '</p>' 
+				+ '<p>Accuracy: ' + position.coords.accuracy + '</p>' 
+				+ '<p>Altitude: ' + position.coords.altitude + '</p>' 
+				+ '<p>Altitude accuracy: ' + position.coords.altitudeAccuracy + '</p>' 
+				+ '<p>Speed: ' + position.coords.speed + '</p>' 
+				+ '<p>Heading: ' + position.coords.heading + '</p>';
+			}
+        
+		</script>
+
+
 </div> 
 
 <?php require('civimobile.footer.php'); ?>

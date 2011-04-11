@@ -3,56 +3,57 @@
 <div data-role="page" data-theme="b" id="jqm-home"> 
 	<div id="jqm-homeheader" data-role="header">
 	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
-	    <?php 
-	    $params = array ('version' =>'3', 'activity_id' =>'2', 'return' =>'source_contact_id,source_record_id');
+	</div> 
+	
+	<div data-role="content"> 
+        <ul id="main-events-list" data-role="listview" data-inset="true" >
+	   <li data-role="list-divider">Upcoming Events</li>
+        <?php 	
+        $params = array ('version' =>'3');
+        $results=civicrm_api("Event","get",$params);
+        $events = $results['values'];
+        foreach($events as $key => $event) { ?>
+            
+            <li role="option" tabindex="-1" data-theme="c" id="event-<?php print $event['id']; ?>" >
+                <a href="civimobile/participants&event_id=<?php print $event['id']; ?>" data-role="participants-<?php print $event['id']; ?>">
+                <?php print $event['title']; ?></a>
+            </li>
+            
+        <?php    } ?>
+        </ul>
+
+	   <ul id="activities-list" data-role="listview" data-inset="true">
+	   <li data-role="list-divider">Your Activities</li>
+	   <?php 
+	    global $user;
+	    
+	    // get current user's contact ID
+	    $params = array ('version' =>'3', 'uf_id' => $user->uid );
+        $results=civicrm_api("UF_match","get",$params);
+	    
+	    $contactID = $results['values']['contact_id'];
+	    print $contact_id;
+	    $params = array ('version' =>'3', 'contact_id' =>$contactID, 'rowCount' => '5');
         $results= civicrm_api("Activity","get",$params);
-        ?>
-	</div> 
-	
-	<div data-role="content" id="home-content"> 
+        $activities = $results['values'];
+        foreach($activities as $key => $activity) { ?>
+            
+            <li tabindex="-1" data-theme="c" >
+                <?php print $activity['subject']; ?>
+            </li>
+            
+        <?php    } ?>
+        </ul>
     
-	</div> 
-</div> 
-
-<div data-role="page" data-theme="b" id="jqm-participants"> 
-	<div id="jqm-participantsheader" data-role="header">
-	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
-	</div> 
-	
-	<div data-role="content" id="participants-content"> 
-
-	</div> 
-</div> 
-
-<div data-role="page" data-theme="e" id="jqm-participant"> 
-	<div id="jqm-participantheader" data-role="header">
-	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
-	</div> 
-	
-	<div data-role="content" id="participant-content"> 
-
-	</div> 
-</div> 
-
-
-<div data-role="page" data-theme="b" id="jqm-contacts"> 
-	<div id="jqm-contactsheader" data-role="header">
-	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
-	</div> 
-	
-	<div data-role="content" id="contacts-content"> 
-
-	</div> 
-</div> 
-
-<div data-role="page" data-theme="b" id="jqm-contact"> 
-	<div id="jqm-contactheader" data-role="header">
-	    <h3><?php print $civimobile_page_settings['title'] ?></h3>
-	</div> 
-	
-	<div data-role="content" id="contact-content"> 
-
-	</div> 
+	</div>
+	    <div data-role="footer" data-id="global-footer" data-position="fixed" data-theme="a">
+	<div data-role="navbar" data-theme="a">
+      <ul>
+        <li><a href="<?php print base_path(); ?>civimobile/contact" data-icon="search" data-ajax="false">Contacts</a></li>
+        <li><a href="<?php print base_path(); ?>civimobile/events" data-icon="grid" data-ajax="false">Events</a></li>
+      </ul>
+    </div><!-- /navbar -->
+    </div><!-- /footer -->  
 </div> 
 
 <?php require('civimobile.footer.php'); ?>

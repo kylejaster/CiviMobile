@@ -4,7 +4,8 @@
           ,{ 
             ajaxURL: crmajaxURL,
             success:function (data){
-              $('#home-content').append('<ul id="events-list" data-role="listview" data-inset="true" data-filter="true" ></ul>');
+                
+              $('#home-content').empty().append('<ul id="events-list" data-role="listview" data-inset="true" ></ul>');
               $.each(data.values, function(key, value) {
                 $('#events-list').append('<li role="option" tabindex="-1" data-theme="c" id="event-'+value.id+'" ><a href="civimobile/participants&event_id='+value.id+'" data-role="participants-'+value.id+'">'+value.title+'</a></li>');
                 });
@@ -72,7 +73,7 @@ $(function(){
                   $.each(data.values, function(key, value) {
                      $.mobile.pageLoading( true );
                      $('#jqm-participant_status .ui-title').html(value.display_name);
-                     $('#status-'+value.participant_status_id).attr('data-theme','b').toggleClass('ui-btn-up-c').toggleClass('ui-btn-up-b');       
+                     $('.status-'+value.participant_status_id).attr('data-theme','b').toggleClass('ui-btn-up-c').toggleClass('ui-btn-up-b');       
                      $('#contact-record').attr('href','#civimobile/contact/'+value.contact_id);
                      });
                     }
@@ -106,7 +107,7 @@ $(function(){
                     $.mobile.pageLoading( true );
                     $('.ui-btn-up-b').attr('data-theme','c').removeClass('ui-btn-up-b').addClass('ui-btn-up-c');
                     $('.ui-btn-hover-c').attr('data-theme','c').removeClass('ui-btn-hover-b').addClass('ui-btn-hover-c');
-                    $('#status-'+result.status_id).attr('data-theme','b').removeClass('ui-btn-up-c').removeClass('ui-btn-hover-c').addClass('ui-btn-up-b');
+                    $('.status-'+result.status_id).attr('data-theme','b').removeClass('ui-btn-up-c').removeClass('ui-btn-hover-c').addClass('ui-btn-up-b');
                   }
                 }
                });
