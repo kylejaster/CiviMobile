@@ -31,7 +31,7 @@ include('civimobile.header.php');
 
  <div data-role="header" data-theme="b">
     <h3><?php print $contact['display_name'];?></h3>
-    	    <a href="/civimobile/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+    	    <a href="/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
 
   </div><!-- /header -->
 	
@@ -42,7 +42,7 @@ include('civimobile.header.php');
                 if ($contrib_results['count'] >1) :print 's';
                 endif;
                 else :
-                print 'Contact type: '.$contact['contact_type'];
+                // print 'Contact type: '.$contact['contact_type'];
                endif; ?>
         </div>
 <div class="vcard">

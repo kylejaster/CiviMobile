@@ -6,7 +6,7 @@
 <div data-role="page" data-theme="c" id="participant_status" class="participant_status"> 
 	<div id="jqm-participant_status" data-role="header">
 	    <h3>Participant Status</h3>
-	   <a href="/civimobile/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+	   <a href="/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
 
 	</div> 
 	

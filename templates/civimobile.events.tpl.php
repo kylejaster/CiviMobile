@@ -21,7 +21,7 @@ window.console && console && console.log ("loading...");
 	<div id="jqm-homeheader">
         <div data-role="header" data-theme="b">
             <h3>Events</h3>
-            	    <a href="/civimobile/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+            	    <a href="/civimobile" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
 
         </div>
 	</div> 
@@ -31,8 +31,8 @@ window.console && console && console.log ("loading...");
 	<div data-role="footer" data-id="global-footer" data-position="fixed" data-theme="a">
 	<div data-role="navbar" data-theme="a">
       <ul>
-        <li><a href="<?php print $base_url.base_path(); ?>contact" data-ajax="false" data-icon="search">Contacts</a></li>
-        <li><a href="<?php print $base_url.base_path(); ?>events" class="ui-btn-active" data-ajax="false" data-icon="grid">Events</a></li>
+        <li><a href="/civimobile/contact" data-ajax="false" data-icon="search">Contacts</a></li>
+        <li><a href="/civimobile/events" class="ui-btn-active" data-ajax="false" data-icon="grid">Events</a></li>
       </ul>
     </div><!-- /navbar -->
     </div><!-- /footer --> 

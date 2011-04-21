@@ -15,7 +15,7 @@
         foreach($events as $key => $event) { ?>
             
             <li role="option" tabindex="-1" data-theme="c" id="event-<?php print $event['id']; ?>" >
-                <a href="civimobile/participants&event_id=<?php print $event['id']; ?>" data-role="participants-<?php print $event['id']; ?>">
+                <a href="/civimobile/participants&event_id=<?php print $event['id']; ?>" data-role="participants-<?php print $event['id']; ?>">
                 <?php print $event['title']; ?></a>
             </li>
             
@@ -49,8 +49,8 @@
 	    <div data-role="footer" data-id="global-footer" data-position="fixed" data-theme="a">
 	<div data-role="navbar" data-theme="a">
       <ul>
-        <li><a href="<?php print base_path(); ?>civimobile/contact" data-icon="search" data-ajax="false">Contacts</a></li>
-        <li><a href="<?php print base_path(); ?>civimobile/events" data-icon="grid" data-ajax="false">Events</a></li>
+        <li><a href="/civimobile/contact" data-icon="search" data-ajax="false">Contacts</a></li>
+        <li><a href="/civimobile/events" data-icon="grid" data-ajax="false">Events</a></li>
       </ul>
     </div><!-- /navbar -->
     </div><!-- /footer -->  
